@@ -1,0 +1,92 @@
+{
+    "layer": "bottom",
+    "position": "top",
+    "height": 20,
+    "modules-left": ["sway/workspaces", "sway/mode"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "pulseaudio", "battery", "custom/shutdown"],
+
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{icon}",
+    "format-icons": {
+        "1": "Firefox ",
+        "2": "Terminal ",
+        "3": "IDE ",
+	"4": "4",
+	"5": "5",
+	"6": "6",
+	"7": "7",
+	"8": "Telegram ",
+        "9": "Spotify "
+        },
+    "persistent_workspaces": {
+        "1": [],
+	"2": [],
+	"3": [],
+	"8": [],
+	"9": [] 
+    	}
+    }, 
+    "sway/window":
+	{
+        "max-length": 50
+	},
+
+    "clock":
+	{
+        "format-alt": "{:%a, %d. %b  %H:%M}"
+	},
+
+    "pulseaudio":
+        {
+        "format": "Vol: {volume}%",
+        "format-muted": "Mute",
+	"scroll-step": 1,
+	"on-click": "pavucontrol"
+        },
+
+
+    "cpu":
+	{
+	"interval": 10,
+	"format": "CPU: {usage}%",
+	"max-length": 10
+	},
+
+    "memory":
+	{
+	"interval": 10,
+	"format": "Mem: {}%",
+	"max-length": 10
+	},
+    "battery": {
+        "states": {
+            // "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "Bat: {capacity}%",
+        "format-charging": "Bat():{capacity}%",
+        "format-alt": "Time left: {time}",
+	"interval": 5
+    },
+
+    "custom/shutdown":
+	{
+	"format": "Shutdown",
+	"interval": 0,
+	"on-click": "exec swaynag -t warning -m 'Immediately shutdown the system?' -b 'Yes' 'shutdown now'"
+	},
+    "custom/corona":
+	{
+	"format": " {}",
+	"tooltip": true,
+	"return-type": "json",
+	"exec": "~/.config/waybar/scripts/corona.py",
+	"on-click": "~/.config/waybar/scripts/corona.py",
+	"interval": 60
+	}
+}
+
