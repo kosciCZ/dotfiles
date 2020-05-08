@@ -27,7 +27,7 @@ set $screenshot grim ~/Obrázky/screenshots/scrn-$(date +"%Y-%m-%d-%H-%M-%S").pn
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/.config/sway/forest.jpg fill
+output * bg ~/.config/sway/wave.png fill
 #
 # Example configuration:
 #
@@ -253,6 +253,9 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+#set gaps
+gaps inner 15
 
 #
 # Status Bar:
