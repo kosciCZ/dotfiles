@@ -79,7 +79,7 @@
     "network": {
         // "interface": "wlp2s0", // (Optional) To force the use of this interface
         "format-wifi": "{signalStrength:2}% ",
-        "format-ethernet": "{ifname} ",
+        "format-ethernet": "{ifname} ",
         "format-disconnected": "Disconnected ⚠",
 	"on-click": "exec kitty nmtui",
 	"tooltip": true,
