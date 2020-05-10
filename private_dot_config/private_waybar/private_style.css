@@ -1,18 +1,20 @@
 /* Still contains lots of unchanged styling! Adding widgets other than custom-shutdown, cpu, mem, clock etc. will look funky! */
 @import "/home/jkosciel/.cache/wal/colors-waybar.css";
+@define-color alert #f53c3c; 
 *
  {
     border: none;
     border-radius: 0;
     /* `otf-font-awesome` is required to be installed for icons */
-    font-family: Inconsolata;
-    font-size: 16px;
-    min-height: 0;
+    font-family: 'InconsolataGo Nerd Font';
+    font-weight: 500;
+    font-size: 19px;
+    min-height: 23px;
 }
 
 window#waybar {
     background-color: @background;
-    border-bottom: 2px solid @color2;
+    border-bottom: 2px solid @color1;
     color: @foreground;
     transition-property: background-color;
     transition-duration: .5s;
@@ -31,32 +33,25 @@ window#waybar.solo {
 }
 */
 
-window#waybar.termite {
-    background-color: #3F3F3F;
-}
-
-window#waybar.chromium {
-    background-color: #000000;
-    border: none;
-}
-
 #workspaces button {
-    padding: 0 10px;
+    padding-left: 8px;
+    margin-right: 2px;
+    padding-bottom: 4px;
     background-color: transparent;
     color: #ffffff;
-    border-top: 2px solid transparent;
 }
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: @color2;
     box-shadow: inherit;
-    border-top: 2px solid #ffffff;
+  text-shadow: inherit;
 }
 
 #workspaces button.focused {
-    background-color: @color2;
-    border-top: 2px solid @foreground;
+    background-color: @color1;
+    box-shadow: inherit;
+  text-shadow: inherit;
 }
 
 #workspaces button.urgent {
@@ -64,8 +59,7 @@ window#waybar.chromium {
 }
 
 #mode {
-    background-color: #64727D;
-    border-top: 2px solid white;
+    background-color: @color2;
 }
 
 #clock,
@@ -81,24 +75,22 @@ window#waybar.chromium {
 #mode,
 #idle_inhibitor,
 #mpd {
-    padding: 0 10px;
-    margin: 0 4px;
+    background-color: transparent;
+    padding-right: 15px;
+    padding-left: 10px;
+    margin: 0 0;
     color: #ffffff;
 }
 
 #clock {
-    background-color: @color2;
+    background-color: @color1;
 }
 
 
 #custom-shutdown {
-    color: @color3;
-
-}
-
-#battery  {
-    background-color: transparent;
-    color: @foreground;
+    color: @color6;
+    margin-right: 20px;
+    margin-left: 5px;
 }
 
 @keyframes blink {
@@ -109,10 +101,9 @@ window#waybar.chromium {
 }
 
 #battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
+    background-color: @alert;
     animation-name: blink;
-    animation-duration: 0.5s;
+    animation-duration: 2s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
@@ -122,88 +113,13 @@ label:focus {
     background-color: #000000;
 }
 
-#cpu {
-    background-color: transparent;
-    color: @foreground;
-}
-
-#memory {
-    background-color: transparent;
-    color: @foreground;
-}
-
-#backlight {
-    background-color: #90b1b1;
-}
-
-#network {
-    background-color: #2980b9;
-}
-
-#network.disconnected {
-    background-color: #f53c3c;
-}
-
-#pulseaudio {
-    background-color: transparent;
-    color: @foreground;
-}
-
 #pulseaudio.muted {
-    background-color: transparent;
-    color: @foreground;
+    background-color: @color2;
 }
 
 #custom-media {
-    background-color: #66cc99;
-    color: #2a5c45;
-    min-width: 100px;
+    background-color: @color4;
+    color: #ffffff;
+    min-width: 300px;
 }
-
-#custom-media.custom-spotify {
-    background-color: #66cc99;
-}
-
-#custom-media.custom-vlc {
-    background-color: #ffa000;
-}
-
-#temperature {
-    background-color: #f0932b;
-}
-
-#temperature.critical {
-    background-color: #eb4d4b;
-}
-
-#tray {
-    background-color: #2980b9;
-}
-
-#idle_inhibitor {
-    background-color: #2d3436;
-}
-
-#idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
-}
-
-#mpd {
-    background-color: #66cc99;
-    color: #2a5c45;
-}
-
-#mpd.disconnected {
-    background-color: #f53c3c;
-}
-
-#mpd.stopped {
-    background-color: #90b1b1;
-}
-
-#mpd.paused {
-    background-color: #51a37a;
-}
-
 

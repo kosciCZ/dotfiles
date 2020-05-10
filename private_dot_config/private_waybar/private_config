@@ -1,10 +1,10 @@
 {
-    "layer": "bottom",
+    "layer": "top",
     "position": "top",
     "height": 28,
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["clock"],
-    "modules-right": ["cpu", "memory", "pulseaudio", "battery", "custom/shutdown"],
+    "modules-right": ["custom/media", "network", "cpu", "memory", "pulseaudio", "battery", "custom/shutdown"],
 
   "sway/workspaces": {
     "disable-scroll": true,
@@ -24,9 +24,7 @@
     "persistent_workspaces": {
         "1": [],
 	"2": [],
-	"3": [],
-	"8": [],
-	"9": [] 
+	"3": []
     	}
     }, 
     "sway/window":
@@ -41,7 +39,7 @@
 
     "pulseaudio":
         {
-        "format": "Vol: {volume}%",
+        "format": "{volume:3}% 墳",
         "format-muted": "Mute",
 	"scroll-step": 1,
 	"on-click": "pavucontrol"
@@ -51,31 +49,46 @@
     "cpu":
 	{
 	"interval": 10,
-	"format": "CPU: {usage}%",
+	"format": "{usage:3}% ",
 	"max-length": 10
 	},
 
     "memory":
 	{
 	"interval": 10,
-	"format": "Mem: {}%",
+	"format": "{percentage:2}% ",
 	"max-length": 10
 	},
     "battery": {
         "states": {
-            // "good": 95,
+            "full": 90,
+            "good": 75,
+	    "half": 50,
             "warning": 30,
             "critical": 15
         },
-        "format": "Bat: {capacity}%",
-        "format-charging": "Bat():{capacity}%",
+        "format-charging": "{capacity:2}% ",
+        "format-warning": "{capacity:2}% ",
+	"format-half": "{capacity:2}% ",
+	"format-critical": "{capacity:2}% ",
+	"format-good": "{capacity:2}% ",
+	"format-full": "{capacity:2}% ",
         "format-alt": "Time left: {time}",
 	"interval": 5
     },
-
+    "network": {
+        // "interface": "wlp2s0", // (Optional) To force the use of this interface
+        "format-wifi": "{signalStrength:2}% ",
+        "format-ethernet": "{ifname} ",
+        "format-disconnected": "Disconnected ⚠",
+	"on-click": "exec kitty nmtui",
+	"tooltip": true,
+        "tooltip-format-wifi": "{essid} - {ipaddr}/{cidr}",
+        "tooltip-format-ethernet": "{ipaddr}/{cidr}"
+    },
     "custom/shutdown":
 	{
-	"format": "Shutdown",
+	"format": "",
 	"interval": 0,
 	"on-click": "exec swaynag -t warning -m 'Immediately shutdown the system?' -b 'Yes' 'shutdown now'"
 	},
@@ -87,6 +100,18 @@
 	"exec": "~/.config/waybar/scripts/corona.py",
 	"on-click": "~/.config/waybar/scripts/corona.py",
 	"interval": 60
-	}
+	},
+    "custom/media": {
+        "format": "{}",
+        "return-type": "json",
+        "max-length": 60,
+	"on-click": "exec playerctl --player spotify play-pause",
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py --player spotify 2> /dev/null"
+    }
 }
 
