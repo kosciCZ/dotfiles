@@ -1,6 +1,6 @@
 ignore-empty-password
 clock
-image=/home/jkosciel/Obrázky/Wallpapers/wave.png
+image=~/.config/sway/wave.png
 
 timestr=%R
 datestr=%e.%0m. %Y 
